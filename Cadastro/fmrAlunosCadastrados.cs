@@ -28,13 +28,13 @@ namespace Cadastro
             try
             {
                 conn.Open();
-                sql = "select id from alunos";
+                sql = "select Id from alunos";
                 cmd = new SqlCommand(sql, conn);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
 
-                    lbxDados.Items.Add(dr["id"].ToString());
+                    lbxDados.Items.Add(dr["Id"].ToString());
                 }
                 cmd.Dispose();
                 dr.Close();
@@ -49,7 +49,7 @@ namespace Cadastro
         private void lbxDados_SelectedIndexChanged(object sender, EventArgs e)
         {
             string sql;
-            sql = "select * from alunos where id=" + lbxDados.SelectedItem;
+            sql = "select * from alunos where Id=" + lbxDados.SelectedItem;
             try
             {
                 cmd = new SqlCommand(sql, conn);
@@ -57,7 +57,7 @@ namespace Cadastro
                 if (dr.HasRows)
                 {
                     dr.Read();
-                    txtid.Text = dr["id"].ToString();
+                    txtid.Text = dr["Id"].ToString();
                     txtnome.Text = dr["nome"].ToString();
                     txtcurso.Text = dr["curso"].ToString();
                 }

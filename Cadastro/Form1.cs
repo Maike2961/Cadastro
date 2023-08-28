@@ -42,11 +42,11 @@ namespace Cadastro
             int retorno;
             try
             {
-                sql = "insert into alunos (id, nome, curso) (" + txtid.Text +
+                sql = "insert into alunos ( id,nome,curso) values(" + txtid.Text +
                     ", '" + txtnome.Text + "', '" + txtcurso.Text + "')";
                 cmd = new SqlCommand(sql, conn);
                 retorno = cmd.ExecuteNonQuery();
-                if (retorno == 0)
+                if (retorno > 0)
                 {
                     MessageBox.Show("Cadastro efetuado");
                 }
@@ -70,23 +70,14 @@ namespace Cadastro
             string sql;
             try
             {
-                sql = "select * from alunos where id = " + txtid.Text;
-                cmd = new SqlCommand(sql, conn);
-                dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    dr.Read();
-                    txtnome.Text = dr["nome"].ToString();
-                    txtcurso.Text = dr["curso"].ToString();
-                }
-                else
-                {
-                    MessageBox.Show("registro não encontrado");
-                }
-                dr.Close();
-                cmd.Dispose();
+                SqlCommand command = new SqlCommand("select * from alunos", conn);
+                SqlDataAdapter sd = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                sd.Fill(dt);
+                dataGridView1.DataSource = dt;
             }
-            catch(SqlException ex)
+ 
+            catch (SqlException ex)
             {
                 MessageBox.Show("Erro no comando sql" + ex.Message);
             }
@@ -98,7 +89,7 @@ namespace Cadastro
             int retorno;
             try
             {
-                sql = "delete alunos where id = " + txtid.Text;
+                sql = "DELETE alunos WHERE Id = " + txtid.Text;
                 cmd = new SqlCommand(sql, conn);
                 retorno = cmd.ExecuteNonQuery();
                 if(retorno > 0)
@@ -124,6 +115,14 @@ namespace Cadastro
         {
             fmrAlunosCadastrados f2 = new fmrAlunosCadastrados();
             f2.Show();
+        }
+
+        private void btnalterar_Click(object sender, EventArgs e)
+        {
+            SqlCommand command = new SqlCommand("update alunos set nome='"+txtnome.Text+"',curso='"+txtcurso.Text+"' where Id='"+int.Parse(txtid.Text)+"' ", conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+            MessageBox.Show("Sucesso na Alteração");
         }
     }
 }

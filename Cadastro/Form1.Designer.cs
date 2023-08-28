@@ -40,6 +40,8 @@
             this.txtid = new System.Windows.Forms.TextBox();
             this.txtnome = new System.Windows.Forms.TextBox();
             this.txtcurso = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblid
@@ -107,6 +109,7 @@
             this.btnalterar.TabIndex = 6;
             this.btnalterar.Text = "Alterar";
             this.btnalterar.UseVisualStyleBackColor = true;
+            this.btnalterar.Click += new System.EventHandler(this.btnalterar_Click);
             // 
             // btnexcluir
             // 
@@ -149,11 +152,20 @@
             this.txtcurso.Size = new System.Drawing.Size(202, 20);
             this.txtcurso.TabIndex = 11;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(32, 324);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(524, 114);
+            this.dataGridView1.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtcurso);
             this.Controls.Add(this.txtnome);
             this.Controls.Add(this.txtid);
@@ -169,6 +181,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,6 +201,7 @@
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.TextBox txtnome;
         private System.Windows.Forms.TextBox txtcurso;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
